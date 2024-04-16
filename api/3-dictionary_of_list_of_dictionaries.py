@@ -1,13 +1,10 @@
 #!/usr/bin/python3
 """
-Model to make a request to an
-API and retrieve data
+Model to make a request to an API and retrieve data
 """
-
 
 import json
 import requests
-
 
 if __name__ == "__main__":
     URL = "https://jsonplaceholder.typicode.com/"
@@ -22,11 +19,12 @@ if __name__ == "__main__":
         user_todos = []
         for todos in all_todos:
             if todos['userId'] == user['id']:
-                user_todos.append({"username": user['username'],
-                                   "task": todos['title'],
-                                   "completed": todos['completed']})
+                user_todos.append({
+                    "username": user['username'],
+                    "task": todos['title'],
+                    "completed": todos['completed']
+                })
         user_json[f"{user['id']}"] = user_todos
 
     with open("todo_all_employees.json", 'w') as file:
         json.dump(user_json, file)
-    
